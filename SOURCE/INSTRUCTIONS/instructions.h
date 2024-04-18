@@ -52,7 +52,7 @@ typedef struct
 
 } InputFile;
 
-// - - - - - - - - - - -
+
 
 char *readFile(const char *RELATIVE_FILE_PATH);
 
@@ -60,4 +60,4 @@ Instruction *assignInstruction(char *ASSEMBLY_CODE);
 
 void writeFile(InputFile *INPUT);
 
-#endif //  INSTRUCTIONS_H
+#endif 
