@@ -1,11 +1,9 @@
 #include "memory.h"
 #include <stdio.h>
 #include <stdlib.h>
-// - - - - - - - - -
 
 Memory* allocateMemory(Register* STACK_POINTER)
 {
-    //Allocate memory for the memory
     Memory* memory = (Memory*)malloc(sizeof(Memory));
     if (memory == NULL)
     {
@@ -13,7 +11,6 @@ Memory* allocateMemory(Register* STACK_POINTER)
         exit(EXIT_FAILURE);
     }
 
-    //Set the stackPointer and initialise to 0
     memory->stackPointer = STACK_POINTER;
     Bit zeroBits[REGISTER_SIZE];
     for (int i = 0; i < REGISTER_SIZE; ++i)
@@ -22,7 +19,6 @@ Memory* allocateMemory(Register* STACK_POINTER)
     }
     setRegisterValue(memory->stackPointer, zeroBits);
 
-    //Initialise all bits of all memory cells to 0 and give them their address
     for (int i = 0; i < PROGRAM_MEMORY; ++i)
     {
         for (int j = 0; j < MEMORY_CELL_SIZE; ++j)
@@ -63,35 +59,25 @@ Memory* allocateMemory(Register* STACK_POINTER)
     return memory;
 }
 
-// - - - - - - - - -
-
 void deallocateMemory(Memory* MEMORY)
 {
     free(MEMORY);
 }
-
-// - - - - - - - - -
 
 MemoryCell* getProgramMemory(Memory* MEMORY)
 {
     return MEMORY->programMemory;
 }
 
-// - - - - - - - - - 
-
 MemoryCell* getStackMemory(Memory* MEMORY)
 {
     return MEMORY->stackMemory;
 }
 
-// - - - - - - - - -
-
 MemoryCell* getDataMemory(Memory* MEMORY)
 {
     return MEMORY->dataMemory;
 }
-
-// - - - - - - - - -
 
 void printMemoryCell(const MemoryCell* MEMORYCELL)
 {
@@ -107,8 +93,6 @@ void printMemoryCell(const MemoryCell* MEMORYCELL)
     }
 }
 
-// - - - - - - -
-
 void printProgramMemory(const Memory* MEMORY)
 {
     printf("\nProgram Memory:\n");
@@ -118,8 +102,6 @@ void printProgramMemory(const Memory* MEMORY)
         printf("\n");
     }
 }
-
-// - - - - - - - - 
 
 void printStackMemory(const Memory* MEMORY)
 {
@@ -131,8 +113,6 @@ void printStackMemory(const Memory* MEMORY)
     }
 }
 
-// - - - - - - - - 
-
 void printDataMemory(const Memory* MEMORY)
 {
     printf("\nData Memory:\n");
@@ -142,8 +122,6 @@ void printDataMemory(const Memory* MEMORY)
         printf("\n");
     }
 }
-
-// - - - - - - - -
 
 void decreaseStackPointer(Memory* MEMORY)
 {
